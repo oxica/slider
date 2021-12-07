@@ -1,54 +1,54 @@
+<!DOCTYPE html>
 <html lang="ru">
-<head>
-    <title>Cлaйдep</title>
-    <meta charset="utf-8">
-</head>
-<style>
-    #main {
-        position: relative;
-        margin: lOOpx auto;
-        padding: 5рх;
-        width: ббОрх;
-        height: 360px;
-        background-color: silver;
-        border: 5рх solid grey;
-        border-radius: l5px;
-    }
-
-    #scr {
-        margin: 20px auto;
-        width: бООрх;
-        height: 320рх;
-        margin-top: 20px;
-        background-color: white;
-        background-size: cover;
-        border: 2рх solid Ыасk;
-        border-radius: lOpx;
-    }
-
-    button {
-    position:  absolute; 
-    top:  150рх; 
-    width:  25рх; 
-    height:  70рх; 
-    font:  12pt  arial,tahoma,sans-serif; 
-    text-align:  center; 
-    }
-
-    .left  { 
-        left:Spx; 
-    }
-    .right  { 
-        right:Spx; 
-    }
-</style>
-
-    <body>
-        <div id="main">
-            <button class="left" onclick="slider.left();"></button>
-            <div id="scr"></div>
-            <button class="right" onclick="slider.right();">></button>
-        </div>
-    </body>
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cлaйдeр</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <script>
+    let slider = {
+      //массив с  изображениями
+      slides: ["6.jpg", "9.jpg", "20.jpg"],
+      // начальный кадриндекс из массива,  нумерация с  0
+      frame: O,
+      set: function (image) {
+        // установка нужного фона слайдеру
+        document.getElementById("scr").style.backgroundimage = "url(" + image + ")";
+      },
+      init: function () {
+        // запуск слайдера с  начальной картинкой
+        this.set(this.slides[this.frame]);
+      },
+      left: function () {
+        // влево
+        this.frame--;
+        if (this.frame < 0) this.frame = this.slides.length - 1;
+        this.set(this.slides[this.frame]);
+      },
+      right: function () {
+        // вправо
+        this.frame++;
+        if (this.frame == this.slides.length) this.frame = О;
+        this.set(this.slides[this.frame]);
+      },
+    };
+    window.onload = function () {
+      // запуск слайдера после  загрузки документа
+      slider.init();
+      setInterval(function () {
+        //  5  секунд
+        slider.right(); //после - переход на  кадр справа
+      }, 5000);
+    };
+  </script>
+  <body>
+    <div id="main">
+      <button class="left" onclick="slider.left();"></button>
+      <div id="scr"></div>
+      <button class="right" onclick="slider.right();"></button>
+    </div>
+    <!-- <script type="module" src="js/script.js"></script> -->
+  </body>
 </html>
